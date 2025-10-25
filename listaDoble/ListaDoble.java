@@ -43,7 +43,8 @@ public class ListaDoble<T>{
      * @param valor: valor a agregar
      * @param pos: indica la posicion en donde se insertará el nodo
      * @throws : PosicionIlegalException en caso de que la posicion no exista
-     */
+     */  
+    
     public void insertar(T valor, int pos) throws PosicionIlegalException{
         if (pos>=0 && pos<=tamanio){
             Nodo<T> nuevo = new Nodo<>();
