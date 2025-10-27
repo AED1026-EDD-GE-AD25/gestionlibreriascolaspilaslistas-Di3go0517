@@ -58,5 +58,4 @@ public class Cola<T> {
         fin = null;
         tamanio = 0;
     }
-    
 }
