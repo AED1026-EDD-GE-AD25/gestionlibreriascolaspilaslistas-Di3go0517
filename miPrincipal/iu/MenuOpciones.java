@@ -26,9 +26,9 @@ public class MenuOpciones {
         Libro nuevoLibro = libreria.crearLibro(titulo, autor, isbn);
         if (nuevoLibro != null) {
             libreria.agregarLibro(nuevoLibro);
-            System.out.println("✅ Libro agregado exitosamente: " + nuevoLibro.getTitulo());
+            System.out.println("Libro agregado exitosamente: " + nuevoLibro.getTitulo());
         } else {
-            System.out.println("❌ Error: No fue posible crear el libro");
+            System.out.println("Error: No fue posible crear el libro");
         }
     }
     
@@ -55,7 +55,6 @@ public class MenuOpciones {
         System.out.print("Ingrese el título del libro a reservar: ");
         String titulo = scanner.nextLine();
         
-        // Buscar el libro en la librería
         ListaDoble<Libro> libros = libreria.obtenerLibros();
         Libro libroEncontrado = null;
         
@@ -71,15 +70,15 @@ public class MenuOpciones {
             if (libroEncontrado != null) {
                 boolean agregado = libreria.agregarLibroCola(libroEncontrado);
                 if (agregado) {
-                    System.out.println("✅ Libro agregado a la cola de reserva: " + libroEncontrado.getTitulo());
+                    System.out.println("Libro agregado a la cola de reserva: " + libroEncontrado.getTitulo());
                 } else {
-                    System.out.println("❌ No se pudo agregar el libro a la cola");
+                    System.out.println("No se pudo agregar el libro a la cola");
                 }
             } else {
-                System.out.println("❌ Libro no encontrado en la librería");
+                System.out.println("Libro no encontrado en la librería");
             }
         } catch (PosicionIlegalException e) {
-            System.out.println("❌ Error al buscar libros: " + e.getMessage());
+            System.out.println("Error al buscar libros: " + e.getMessage());
         }
     }
 
@@ -88,34 +87,24 @@ public class MenuOpciones {
         try {
             Libro libro = libreria.obtenerLibroCola();
             if (libro != null) {
-                System.out.println("✅ Libro obtenido de la cola: " + libro);
+                System.out.println("Libro obtenido de la cola: " + libro);
                 return libro;
             } else {
-                System.out.println("❌ No hay libros en la cola de reserva");
+                System.out.println("No hay libros en la cola de reserva");
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("❌ Error al obtener libro de la cola: " + e.getMessage());
+            System.out.println("Error al obtener libro de la cola: " + e.getMessage());
             return null;
         }
     }
 
     public static void mostrarReservaLibros() {
         System.out.println("=== COLA DE RESERVA DE LIBROS ===");
-        // Asumiendo que tienes un método para obtener la cola completa
-        // Si no, podrías implementar un método en Libreria para mostrar la cola
+       
         System.out.println("Función en desarrollo...");
         
-        // Ejemplo alternativo si tienes acceso a la cola:
-        /*
-        Cola<Libro> colaReserva = libreria.getColaReserva();
-        if (colaReserva.estaVacia()) {
-            System.out.println("No hay libros en reserva.");
-        } else {
-            System.out.println("Libros en reserva: " + colaReserva.getTamanio());
-            // Mostrar información de la cola...
-        }
-        */
+
     }
 
     public static void crearPedido() {
@@ -133,12 +122,12 @@ public class MenuOpciones {
         if (libroPedido != null) {
             pedido = libreria.crearPedido(libroPedido, new Fecha());
             if (pedido != null) {
-                System.out.println("✅ Pedido creado exitosamente: " + pedido);
+                System.out.println("Pedido creado exitosamente: " + pedido);
             } else {
-                System.out.println("❌ No fue posible crear el pedido");
+                System.out.println("No fue posible crear el pedido");
             }
         } else {
-            System.out.println("❌ Error: no fue posible crear el Libro");
+            System.out.println("Error: no fue posible crear el Libro");
         }
     }
 
@@ -161,12 +150,12 @@ public class MenuOpciones {
         if (libroEncontrado != null) {
             boolean devuelto = libreria.devolverLibro(libroEncontrado);
             if (devuelto) {
-                System.out.println("✅ Libro devuelto exitosamente: " + libroEncontrado.getTitulo());
+                System.out.println("Libro devuelto exitosamente: " + libroEncontrado.getTitulo());
             } else {
-                System.out.println("❌ No se pudo devolver el libro");
+                System.out.println("No se pudo devolver el libro");
             }
         } else {
-            System.out.println("❌ Libro no encontrado en la librería");
+            System.out.println("Libro no encontrado en la librería");
         }
     }
 
@@ -175,14 +164,14 @@ public class MenuOpciones {
         try {
             Libro libroEliminado = libreria.eliminarUltimoLibro();
             if (libroEliminado != null) {
-                System.out.println("✅ Libro eliminado: " + libroEliminado.getTitulo());
+                System.out.println("Libro eliminado: " + libroEliminado.getTitulo());
                 return libroEliminado;
             } else {
-                System.out.println("❌ No hay libros para eliminar");
+                System.out.println("No hay libros para eliminar");
                 return null;
             }
         } catch (PosicionIlegalException e) {
-            System.out.println("❌ Error al eliminar libro: " + e.getMessage());
+            System.out.println("Error al eliminar libro: " + e.getMessage());
             throw e;
         }
     }
@@ -192,18 +181,17 @@ public class MenuOpciones {
         try {
             Libro libroRestaurado = libreria.deshacerEliminarLibro();
             if (libroRestaurado != null) {
-                System.out.println("✅ Eliminación deshecha. Libro restaurado: " + libroRestaurado.getTitulo());
+                System.out.println("Eliminación deshecha. Libro restaurado: " + libroRestaurado.getTitulo());
             } else {
-                System.out.println("❌ No hay eliminaciones para deshacer");
+                System.out.println("No hay eliminaciones para deshacer");
             }
         } catch (Exception e) {
-            System.out.println("❌ Error al deshacer eliminación: " + e.getMessage());
+            System.out.println("Error al deshacer eliminación: " + e.getMessage());
         }
     }
     
-    // Método adicional para mostrar el menú principal
     public static void mostrarMenu() {
-        System.out.println("\n📚 === SISTEMA DE GESTIÓN DE LIBRERÍA ===");
+        System.out.println("=== SISTEMA DE GESTIÓN DE LIBRERÍA ===");
         System.out.println("1. Agregar libro");
         System.out.println("2. Mostrar todos los libros");
         System.out.println("3. Reservar libro (agregar a cola)");
@@ -217,7 +205,6 @@ public class MenuOpciones {
         System.out.print("Seleccione una opción: ");
     }
     
-    // Método para ejecutar la opción seleccionada
     public static boolean ejecutarOpcion(int opcion) {
         try {
             switch (opcion) {
@@ -249,15 +236,15 @@ public class MenuOpciones {
                     deshacerEliminarLibro();
                     break;
                 case 0:
-                    System.out.println("👋 ¡Hasta pronto!");
+                    System.out.println("¡Hasta pronto!");
                     return false;
                 default:
-                    System.out.println("❌ Opción inválida");
+                    System.out.println("Opción inválida");
             }
         } catch (PosicionIlegalException e) {
-            System.out.println("❌ Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("❌ Error inesperado: " + e.getMessage());
+            System.out.println("Error inesperado: " + e.getMessage());
         }
         return true;
     }

@@ -10,16 +10,14 @@ public class Pedido {
     private String estado;
     private static int contadorPedidos = 0;
     
-    // Estados posibles del pedido
     public static final String PENDIENTE = "PENDIENTE";
     public static final String PROCESADO = "PROCESADO";
     public static final String ENTREGADO = "ENTREGADO";
     public static final String CANCELADO = "CANCELADO";
     
-    // Constructores
     public Pedido() {
         this.libro = null;
-        this.fechaPedido = new Fecha(); // Fecha actual por defecto
+        this.fechaPedido = new Fecha(); 
         this.estado = PENDIENTE;
         this.idPedido = generarIdPedido();
     }
@@ -38,7 +36,6 @@ public class Pedido {
         this.idPedido = generarIdPedido();
     }
     
-    // Getters y Setters
     public Libro getLibro() {
         return libro;
     }
@@ -71,7 +68,6 @@ public class Pedido {
         return idPedido;
     }
     
-    // Métodos de negocio
     public void procesar() {
         if (PENDIENTE.equals(this.estado)) {
             this.estado = PROCESADO;
@@ -119,7 +115,6 @@ public class Pedido {
         return !ENTREGADO.equals(estado);
     }
     
-    // Métodos de validación
     private boolean esEstadoValido(String estado) {
         return PENDIENTE.equals(estado) || 
                PROCESADO.equals(estado) || 
@@ -132,7 +127,6 @@ public class Pedido {
         return "PED-" + String.format("%04d", contadorPedidos);
     }
     
-    // Métodos de información
     public String obtenerInformacionResumida() {
         return String.format("Pedido %s - %s - %s", 
                            idPedido, 
@@ -157,7 +151,6 @@ public class Pedido {
         );
     }
     
-    // Métodos sobreescritos
     @Override
     public String toString() {
         return String.format("Pedido{id='%s', libro='%s', fecha=%s, estado='%s'}", 
@@ -174,7 +167,6 @@ public class Pedido {
         
         Pedido pedido = (Pedido) obj;
         
-        // Dos pedidos son iguales si tienen el mismo ID
         return Objects.equals(idPedido, pedido.idPedido);
     }
     
@@ -183,7 +175,6 @@ public class Pedido {
         return Objects.hash(idPedido);
     }
     
-    // Métodos estáticos
     public static int getTotalPedidosCreados() {
         return contadorPedidos;
     }
@@ -192,7 +183,6 @@ public class Pedido {
         contadorPedidos = 0;
     }
     
-    // Método para crear pedido con validación
     public static Pedido crearPedidoValidado(Libro libro, Fecha fecha) {
         if (libro == null) {
             throw new IllegalArgumentException("El libro no puede ser nulo");
@@ -204,15 +194,13 @@ public class Pedido {
         return new Pedido(libro, fecha);
     }
     
-    // Método para verificar si el pedido está vencido (más de 30 días)
     public boolean estaVencido() {
         if (fechaPedido == null) {
             return false;
         }
         
-        // Asumiendo que Fecha tiene métodos para calcular diferencia
-        // Esta es una implementación simplificada
-        Fecha hoy = new Fecha(); // Fecha actual
+
+        Fecha hoy = new Fecha(); 
         int diasDiferencia = fechaPedido.diasDiferencia(hoy);
         
         return diasDiferencia > 30 && !ENTREGADO.equals(estado);

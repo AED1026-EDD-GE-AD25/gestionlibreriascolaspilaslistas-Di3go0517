@@ -17,7 +17,6 @@ public class ServicioDatos{
         pila = new Pila<>();
     }
 
-    // Métodos para la lista
     public void agregarALista(Libro valor) {
         lista.agregar(valor);
     }
@@ -34,7 +33,6 @@ public class ServicioDatos{
         return lista.esVacia();
     }
 
-    // Métodos para la cola
     public void agregarACola(Libro valor) {
         cola.encolar(valor);
     }
@@ -55,7 +53,6 @@ public class ServicioDatos{
         return cola.estaVacia();
     }
 
-    // Métodos para la pila
     public void agregarAPila(Libro valor) {
         pila.apilar(valor);
     }

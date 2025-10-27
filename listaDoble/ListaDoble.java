@@ -1,19 +1,16 @@
 package listaDoble;
 
 public class ListaDoble<T> {
-    //atributos
     private Nodo<T> cabeza;
-    private Nodo<T> cola; // Agregamos referencia a la cola para mejor performance
+    private Nodo<T> cola;
     private int tamanio;
     
-    //constructor por defecto
     public ListaDoble(){
         cabeza = null;
         cola = null;
         tamanio = 0;
     }
     
-    //getter y setter
     public int getTamanio() {
         return tamanio;
     }
@@ -22,7 +19,6 @@ public class ListaDoble<T> {
         return cabeza == null;
     }
     
-    //agrega un nuevo nodo al final de la lista (versión optimizada)
     public void agregar(T valor){
         Nodo<T> nuevo = new Nodo<>();
         nuevo.setValor(valor);
@@ -32,7 +28,7 @@ public class ListaDoble<T> {
             cola = nuevo;
         } else {
             cola.setSiguiente(nuevo);
-            nuevo.setAnterior(cola); // Establecer referencia anterior
+            nuevo.setAnterior(cola); 
             cola = nuevo;
         }
         tamanio++;
@@ -52,7 +48,7 @@ public class ListaDoble<T> {
         Nodo<T> nuevo = new Nodo<>();
         nuevo.setValor(valor);
         
-        if(pos == 0){ //insertar al principio
+        if(pos == 0){ 
             if (esVacia()) {
                 cabeza = nuevo;
                 cola = nuevo;
@@ -61,11 +57,11 @@ public class ListaDoble<T> {
                 cabeza.setAnterior(nuevo);
                 cabeza = nuevo;
             }
-        } else if(pos == tamanio){ // al final
+        } else if(pos == tamanio){ 
             cola.setSiguiente(nuevo);
             nuevo.setAnterior(cola);
             cola = nuevo;
-        } else { // en medio
+        } else { 
             Nodo<T> aux = obtenerNodo(pos - 1);
             Nodo<T> siguiente = aux.getSiguiente();
             
@@ -89,19 +85,19 @@ public class ListaDoble<T> {
         
         T valorEliminado;
         
-        if (pos == 0) { // Eliminar cabeza
+        if (pos == 0) { 
             valorEliminado = cabeza.getValor();
             cabeza = cabeza.getSiguiente();
             if (cabeza != null) {
                 cabeza.setAnterior(null);
             } else {
-                cola = null; // Lista queda vacía
+                cola = null;
             }
-        } else if (pos == tamanio - 1) { // Eliminar cola
+        } else if (pos == tamanio - 1) { 
             valorEliminado = cola.getValor();
             cola = cola.getAnterior();
             cola.setSiguiente(null);
-        } else { // Eliminar en medio
+        } else { 
             Nodo<T> aux = obtenerNodo(pos);
             valorEliminado = aux.getValor();
             
@@ -145,6 +141,8 @@ public class ListaDoble<T> {
             aux = aux.getSiguiente();
             posicion++;
         }
+
+
         return -1;
     }
     
@@ -156,27 +154,31 @@ public class ListaDoble<T> {
      */
     public T getValor(int pos) throws PosicionIlegalException{
         return obtenerNodo(pos).getValor();
+
     }
     
-    // Método auxiliar para obtener nodo en posición específica
+
     private Nodo<T> obtenerNodo(int pos) throws PosicionIlegalException {
         if (pos < 0 || pos >= tamanio) {
             throw new PosicionIlegalException();
         }
         
-        // Optimización: si está en la segunda mitad, empezar desde cola
         if (pos > tamanio / 2) {
             Nodo<T> aux = cola;
             for (int i = tamanio - 1; i > pos; i--) {
                 aux = aux.getAnterior();
             }
+
             return aux;
         } else {
             Nodo<T> aux = cabeza;
             for (int i = 0; i < pos; i++) {
                 aux = aux.getSiguiente();
             }
+
             return aux;
+
+
         }
     }
     
@@ -186,16 +188,14 @@ public class ListaDoble<T> {
         tamanio = 0;
     }
     
-    /*
-     * Regresa todos los datos de la lista en forma de String
-     */
+    
     @Override
     public String toString() {
         if (esVacia()) {
             return "Lista vacía";
         }
         
-        StringBuilder sb = new StringBuilder();
+      StringBuilder sb = new StringBuilder();
         Nodo<T> aux = cabeza;
         
         sb.append("[");
@@ -215,22 +215,21 @@ public class ListaDoble<T> {
      * busca un valor en la lista
      * @return true si contiene ese valor, false si no
      */
-    public boolean contiene(T valor){
-        return buscar(valor) != -1;
+public boolean contiene(T valor){
+         return buscar(valor) != -1;
     }
     
-    // Métodos adicionales útiles
     
-    public T getPrimero() throws PosicionIlegalException {
-        if (esVacia()) {
+public T getPrimero() throws PosicionIlegalException {
+          if (esVacia()) {
             throw new PosicionIlegalException("Lista vacía");
         }
         return cabeza.getValor();
     }
     
-    public T getUltimo() throws PosicionIlegalException {
+public T getUltimo() throws PosicionIlegalException {
         if (esVacia()) {
-            throw new PosicionIlegalException("Lista vacía");
+              throw new PosicionIlegalException("Lista vacía");
         }
         return cola.getValor();
     }
@@ -239,11 +238,11 @@ public void agregarAlInicio(T valor) throws PosicionIlegalException {
     insertar(valor, 0);
 }
     
-    public T removerPrimero() throws PosicionIlegalException {
+       public T removerPrimero() throws PosicionIlegalException {
         return remover(0);
     }
     
-    public T removerUltimo() throws PosicionIlegalException {
+       public T removerUltimo() throws PosicionIlegalException {
         return remover(tamanio - 1);
     }
 }
