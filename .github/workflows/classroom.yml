@@ -49,7 +49,7 @@ jobs:
       with:
         test-name: testObtenerLibroCola
         setup-command: make compile
-        command: ava -Dfile.encoding=UTF-8 -jar lib/junit-platform-console-standalone-1.5.2.jar
+        command: java -Dfile.encoding=UTF-8 -jar lib/junit-platform-console-standalone-1.5.2.jar
           --class-path build --select-method miTest.AppTest#testObtenerLibroCola
         timeout: 10
         max-score: 10
