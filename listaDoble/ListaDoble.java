@@ -235,9 +235,9 @@ public class ListaDoble<T> {
         return cola.getValor();
     }
     
-    public void agregarAlInicio(T valor) {
-        insertar(valor, 0);
-    }
+public void agregarAlInicio(T valor) throws PosicionIlegalException {
+    insertar(valor, 0);
+}
     
     public T removerPrimero() throws PosicionIlegalException {
         return remover(0);

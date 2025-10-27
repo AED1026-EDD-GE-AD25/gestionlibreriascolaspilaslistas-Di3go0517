@@ -3,7 +3,6 @@ import listaDoble.ListaDoble;
 import listaDoble.PosicionIlegalException;
 import pila.Pila;
 import cola.Cola;
-
 import miPrincipal.modelo.Libro;
 
 public class ServicioDatos{
@@ -27,6 +26,14 @@ public class ServicioDatos{
         return lista.getValor(indice);
     }
 
+    public int tamanioLista() {
+        return lista.getTamanio();
+    }
+
+    public boolean listaEstaVacia() {
+        return lista.esVacia();
+    }
+
     // Métodos para la cola
     public void agregarACola(Libro valor) {
         cola.encolar(valor);
@@ -34,27 +41,38 @@ public class ServicioDatos{
 
     public Libro obtenerDeCola() {
         return cola.frente();
-  
     }
 
-    public void removerDeCola() {
-        cola.desencolar();
-        
+    public Libro removerDeCola() {
+        return cola.desencolar();
+    }
+
+    public int tamanioCola() {
+        return cola.getTamanio();
+    }
+
+    public boolean colaEstaVacia() {
+        return cola.estaVacia();
     }
 
     // Métodos para la pila
     public void agregarAPila(Libro valor) {
         pila.apilar(valor);
-        
     }
 
     public Libro obtenerDePila() {
         return pila.cima();
-        
     }
 
-    public void removerDePila() {
-        pila.retirar();
-    
+    public Libro removerDePila() {
+        return pila.desapilar();
+    }
+
+    public int tamanioPila() {
+        return pila.getTamanio();
+    }
+
+    public boolean pilaEstaVacia() {
+        return pila.estaVacia();
     }
 }
